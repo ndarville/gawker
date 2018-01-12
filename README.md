@@ -36,6 +36,8 @@ for a in articles:
     })
 ```
 
+On top of this, article headers, author avatars, and embedded article-body headers need to be backed up.
+
 ## Info ##
 
 ### Front page ###
