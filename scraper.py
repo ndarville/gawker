@@ -21,24 +21,31 @@ from pyquery import PyQuery as pq
 import requests
 
 
-NUM_PAGES = 9469
+NUM_PAGES = 1
 OUTPUT_DIR = "output"
-SITE = "http://gawker.com"
+LINKS_FILE = "links.json"
 
 urls = ["http://gawker.com/page_%d" % (page) for page in xrange(1, NUM_PAGES+1, 1)]
 
 def fetchDoc(url):
     "Fetch requested document from URL."
+
     response = requests.get(url)
 
     return pq(response.content)
 
-def scrape_links():
-    "Scrape link data from documents and save to JSON object."
+def buildLinks(urls):
+    "Get article permalinks from web documents."
+
     links = []
     for url in urls:
         doc = fetchDoc(url)
         links += [{"url": a.attrib["href"]} for a in doc("section.main article header h1 a")]
+
+    return links
+
+def saveJson(data, file):
+    "Save JSON object to .json."
 
     try:
         os.makedirs(OUTPUT_DIR)
@@ -46,8 +53,14 @@ def scrape_links():
         if exception.errno != errno.EEXIST:
             raise
 
-    with open(OUTPUT_DIR + "/links.json", "w") as out_f:
-        json.dump(links, out_f)
+    with open(OUTPUT_DIR + "/" + file, "w") as out_f:
+        json.dump(data, out_f)
+
+def scrape_links():
+    "Scrape link data from web documents and save as JSON."
+
+    links = buildLinks(urls)
+    saveJson(links, LINKS_FILE)
 
 def main():
     return scrape_links()
