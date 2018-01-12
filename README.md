@@ -5,7 +5,7 @@
 ```python
 # Get list of article URLs
 articles = []
-for page_1 .. page_9469:
+for page in 1..9469+1:
     for a in "section.main"
         articles.append(a["article.header.h1.a[href]"])
 ```
