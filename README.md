@@ -17,20 +17,21 @@ Keep in mind that all the URLs are relative.
 json = {}
 for a in articles:
     json.add({
-        title: foo,
-        date: foo,
-        content: foo,
+        title: h1,
+        pageviews: .meta__views
+        date: time[datetime],
+        content: .post-content (after <figure>),
+        author: {
+            name: .meta__byline,
+            avatar: ".meta__avatar img[src]"
+        }
         tags: [
-            {name: foo, slug: foo},
-            {name: foo, slug: foo}
+            {name: ".first-tag span", slug: ""},
+            {name: ".taglist li a.text()", slug: ".taglist li a.[href]"}
         ],
         image: {
-            url: foo,
-            author: foo
-        },
-        author: {
-            name: foo,
-            avatar: foo
+            url: "figure img[src]",
+            author: figcaption
         }
     })
 ```
@@ -107,5 +108,5 @@ for a in articles:
         </div>
     </article>
 </div>
-
+<!-- etc -->
 ```
