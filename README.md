@@ -7,7 +7,7 @@
 articles = []
 for page in 1..9469+1:
     for a in "section.main"
-        articles.append(a["article.header.h1.a[href]"])
+        articles.append(a["article header h1 a[href]"])
 ```
 
 Keep in mind that all the URLs are relative.

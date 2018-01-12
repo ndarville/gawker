@@ -39,8 +39,6 @@ def scrape_links():
     for url in urls:
         doc = fetchDoc(url)
         links += [{"url": a.attrib["href"]} for a in doc("section.main article header h1 a")]
-    # Prepend SITE to list of links
-    # links = list(map(lambda x: SITE + x, links))
 
     try:
         os.makedirs(OUTPUT_DIR)
