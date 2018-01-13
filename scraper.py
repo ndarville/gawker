@@ -23,7 +23,6 @@ Use:
 import errno
 import json
 import os
-import multiprocessing
 import sys
 
 from pyquery import PyQuery as pq
@@ -35,7 +34,6 @@ OUTPUT_DIR = "output"
 LINKS_FILE = "links.json"
 
 urls = ["http://gawker.com/page_%d" % (page) for page in xrange(1, NUM_PAGES+1, 1)]
-links = []
 
 def fetchDoc(url):
     "Fetch requested document from URL."
@@ -44,12 +42,12 @@ def fetchDoc(url):
 
     return pq(response.content)
 
-def buildLinks(url):
+def buildLinks(urls):
     "Get article permalinks from web document. Add to list `links`."
 
-    global links
-    doc = fetchDoc(url)
-    links += [{"url": a.attrib["href"]} for a in doc("section.main article header h1 a")]
+    links = []
+    for url in urls:
+        links += [{"url": a.attrib["href"]} for a in fetchDoc(url)("section.main article header h1 a")]
 
     return links
 
@@ -62,16 +60,16 @@ def saveJson(data, file):
         if exception.errno != errno.EEXIST:
             raise
 
+    print "Saving to " + file + " ..."
     with open(OUTPUT_DIR + "/" + file, "w") as out_f:
         json.dump(data, out_f)
 
 def scrape_links():
     "Scrape link data from web documents and save as JSON."
 
-    pool = multiprocessing.Pool()
-    links = pool.map(buildLinks, urls)
-    pool.close()
-
+    print "Building list of links ..."
+    links = buildLinks(urls)
+    print "Finished building list."
     saveJson(links, LINKS_FILE)
 
 def main():
