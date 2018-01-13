@@ -1,5 +1,12 @@
 """
-NUM_PAGES: Number of Gawker pages, 1 to 9469.
+NUM_PAGES:
+    Number of Gawker pages, 1 to 9469.
+
+    Configure manually from shell with argument;
+    eg: `python scraper.py 10` scrapes first 10 pages.
+
+    This simplifies performance testing;
+    eg: `time python scraper.py 10` on UNIX with `time`.
 
 scrape_links():
     Iterates through pages and saves JSON object of Gawker article links.
@@ -17,12 +24,13 @@ import errno
 import json
 import os
 import multiprocessing
+import sys
 
 from pyquery import PyQuery as pq
 import requests
 
 
-NUM_PAGES = 9469
+NUM_PAGES = int(sys.argv[1]) if len(sys.argv) == 2 else 9469
 OUTPUT_DIR = "output"
 LINKS_FILE = "links.json"
 
