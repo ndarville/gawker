@@ -21,7 +21,7 @@ from pyquery import PyQuery as pq
 import requests
 
 
-NUM_PAGES = 1
+NUM_PAGES = 9469
 OUTPUT_DIR = "output"
 LINKS_FILE = "links.json"
 
