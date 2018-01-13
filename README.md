@@ -42,6 +42,14 @@ On top of this, article headers, author avatars, and embedded article-body heade
 
 Taking full advantage of CPU optimization still only yields 10% usage on an ancient CPU so the performance bottleneck is presumably **network-related**.
 
+## Testing ##
+
+### Compare JSON files ###
+
+```sh
+diff <(cat links.old.json | jq .) <(cat links.new.json | jq .) > json.diff
+```
+
 ## Info ##
 
 ### Front page ###
