@@ -25,7 +25,7 @@ import json
 import os
 import sys
 
-from pyquery import PyQuery as pq
+from pyquery import PyQuery
 import requests
 
 
@@ -40,7 +40,7 @@ def fetchDoc(url):
 
     response = requests.get(url)
 
-    return pq(response.content)
+    return PyQuery(response.content)
 
 def buildLinks(urls):
     "Get article permalinks from web document. Add to list `links`."
