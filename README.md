@@ -1,4 +1,5 @@
-# gawker
+Gawker
+======
 
 ## Pseudo code ##
 
