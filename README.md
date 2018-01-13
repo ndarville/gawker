@@ -38,6 +38,10 @@ for a in articles:
 
 On top of this, article headers, author avatars, and embedded article-body headers need to be backed up.
 
+## Optimization ##
+
+Taking full advantage of CPU optimization still only yields 10% usage on an ancient CPU so the performance bottleneck is presumably **network-related**.
+
 ## Info ##
 
 ### Front page ###
@@ -46,7 +50,7 @@ On top of this, article headers, author avatars, and embedded article-body heade
 
     First page: page_1
     Last page:  page_9469
-    
+
 #### HTML ####
 
 ```html
