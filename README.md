@@ -5,19 +5,19 @@ Gawker
 
 ```python
 # Get list of article URLs
-articles = []
+urls = []
 for page in 1..9469+1:
     for a in "section.main"
-        articles.append(a["article header h1 a[href]"])
+        urls.append(a["article header h1 a[href]"])
 ```
 
 Keep in mind that all the URLs are relative.
 
 ```python
 # Scrape all articles
-json = {}
+articles = []
 for a in articles:
-    json.add({
+    articles.add({
         title: h1,
         pageviews: .meta__views
         date: time[datetime],
