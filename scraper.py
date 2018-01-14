@@ -33,21 +33,18 @@ NUM_PAGES = int(sys.argv[1]) if len(sys.argv) == 2 else 9469
 OUTPUT_DIR = "output"
 LINKS_FILE = "links.json"
 
+site = "http://gawker.com"
 urls = ["http://gawker.com/page_%d" % (page) for page in xrange(1, NUM_PAGES+1, 1)]
-
-def fetchDoc(url):
-    "Fetch requested document from URL."
-
-    response = requests.get(url)
-
-    return PyQuery(response.content)
 
 def buildLinks(urls):
     "Get article permalinks from web document. Add to list `links`."
 
     links = []
+    pattern = "section.main article header h1 a"
+
     for url in urls:
-        links += [{"url": a.attrib["href"]} for a in fetchDoc(url)("section.main article header h1 a")]
+        anchors = PyQuery(url, site)(pattern).make_links_absolute()
+        links += [{"url": a.attrib["href"]} for a in anchors]
 
     return links
 
