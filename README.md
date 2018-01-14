@@ -45,6 +45,30 @@ Taking full advantage of CPU optimization still only yields 10% usage on an anci
 
 ## Testing ##
 
+### List JSON links in terminal ###
+
+#### Full list (000s) ####
+
+```sh
+jq -r .[].url output/links.json
+```
+
+#### First 10 ####
+
+This still parses all articles.
+
+```sh
+jq -r .[].url output/links.json | head -10
+```
+
+#### Last 10 ####
+
+This still parses all articles.
+
+```sh
+jq -r .[].url output/links.json | tail -10
+```
+
 ### Compare JSON files ###
 
 ```sh
