@@ -44,7 +44,8 @@ def buildLinks(urls):
 
     for url in urls:
         anchors = PyQuery(url, site)(pattern).make_links_absolute()
-        links += [{"url": a.attrib["href"]} for a in anchors]
+        links += [{"url": a.attrib["href"]} for a in anchors] # List of dicts
+        # links += [a.attrib["href"] for a in anchors] # List of strings
 
     return links
 
