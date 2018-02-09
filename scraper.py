@@ -15,6 +15,7 @@ Todo:
     * scrape_articles() using the JSON object
     * scrape_images()
     * Performance optimizations
+    * Save progress; resume feature
     * Validation and tests
 
 Use:
