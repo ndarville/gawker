@@ -1,2 +1,2 @@
-pyquery
-requests
+pyquery==1.2.8
+requests==2.5.1
