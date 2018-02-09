@@ -1,4 +1,4 @@
-Gawker
+Gawker [![CI Build Status][]](https://travis-ci.org/ndarville/gawker)
 ======
 
 ## Pseudo code ##
@@ -149,3 +149,6 @@ diff <(cat links.old.json | jq .) <(cat links.new.json | jq .) > json.diff
 </div>
 <!-- etc -->
 ```
+
+
+[build status]: https://travis-ci.org/ndarville/gawker.svg
