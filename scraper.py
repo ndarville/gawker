@@ -31,6 +31,7 @@ import requests
 
 
 NUM_PAGES = int(sys.argv[1]) if len(sys.argv) == 2 else 9469
+HAS_LINKS = True
 OUTPUT_DIR = "output"
 LINKS_FILE = "links.json"
 
@@ -66,10 +67,14 @@ def saveJson(data, file):
 def scrape_links():
     "Scrape link data from web documents and save as JSON."
 
-    print "Building list of links ..."
-    links = buildLinks(urls)
-    print "Finished building list."
-    saveJson(links, LINKS_FILE)
+    if not HAS_LINKS:
+        print "Building list of links ..."
+        links = buildLinks(urls)
+        print "Finished building list."
+        saveJson(links, LINKS_FILE)
+    else:
+        print "List of links already exists; loading links."
+        links = json.load(open(OUTPUT_DIR + "/" + LINKS_FILE))
 
 def main():
     return scrape_links()
