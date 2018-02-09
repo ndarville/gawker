@@ -151,4 +151,4 @@ diff <(cat links.old.json | jq .) <(cat links.new.json | jq .) > json.diff
 ```
 
 
-[build status]: https://travis-ci.org/ndarville/gawker.svg
+[ci build status]: https://travis-ci.org/ndarville/gawker.svg
