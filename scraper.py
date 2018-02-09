@@ -31,7 +31,7 @@ import requests
 
 
 NUM_PAGES = int(sys.argv[1]) if len(sys.argv) == 2 else 9469
-HAS_LINKS = True
+HAS_LINKS = NUM_PAGES == 9469
 OUTPUT_DIR = "output"
 LINKS_FILE = "links.json"
 
